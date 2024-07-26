@@ -40,11 +40,11 @@
         <arg name="flight_type" value="1" />
         <!-- global waypoints -->
         <!-- It generates a piecewise min-snap traj passing all waypoints -->
-        <arg name="point_num" value="1" />
-        <arg name="point0_x" value="15" />
-        <arg name="point0_y" value="0" />
-        <arg name="point0_z" value="1" />
-        <arg name="point1_x" value="0.0" />
+        <arg name="point_num" value="2" />
+        <arg name="point0_x" value="3.0" />
+        <arg name="point0_y" value="0.0" />
+        <arg name="point0_z" value="1.0" />
+        <arg name="point1_x" value="5.0" />
         <arg name="point1_y" value="0.0" />
         <arg name="point1_z" value="1.0" />
         <arg name="point2_x" value="15.0" />
@@ -62,5 +62,6 @@
         <!-- <remap from="position_cmd" to="/setpoints_cmd"/> -->
         <remap from="~planning/bspline" to="drone_$(arg drone_id)_planning/bspline"/>
         <param name="traj_server/time_forward" value="1.0" type="double"/>
+        <param name="IF_ROT" value="true" type="bool" />
     </node>
 </launch>

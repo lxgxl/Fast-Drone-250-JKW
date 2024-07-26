@@ -24,6 +24,8 @@ int traj_id_;
 double last_yaw_, last_yaw_dot_;
 double time_forward_;
 
+bool IF_ROT;
+
 void bsplineCallback(traj_utils::BsplineConstPtr msg)
 {
   // parse pos traj
@@ -166,6 +168,8 @@ void cmdCallback(const ros::TimerEvent &e)
   if (!receive_traj_)
     return;
 
+  constexpr double PI = 3.1415926;
+  double dt = 5.0;
   ros::Time time_now = ros::Time::now();
   double t_cur = (time_now - start_time_).toSec();
 
@@ -195,6 +199,20 @@ void cmdCallback(const ros::TimerEvent &e)
 
     yaw_yawdot.first = last_yaw_;
     yaw_yawdot.second = 0;
+
+    // if( t_cur - traj_duration_ >= 0 && t_cur - traj_duration_ <= dt ) yaw_yawdot.first = PI / 6.0;
+    // else if( t_cur - traj_duration_ > dt && t_cur - traj_duration_ <= 2 * dt ) yaw_yawdot.first = PI / 3.0;
+    // else if( t_cur - traj_duration_ > 2 * dt && t_cur - traj_duration_ <= 3 * dt ) yaw_yawdot.first = PI / 2.0;
+    // else if( t_cur - traj_duration_ > 3 * dt && t_cur - traj_duration_ <= 4 * dt ) yaw_yawdot.first = ( 2 * PI ) / 3.0;
+    // else if( t_cur - traj_duration_ > 4 * dt && t_cur - traj_duration_ <= 5 * dt ) yaw_yawdot.first = ( 5 * PI ) / 6.0;
+    // else if( t_cur - traj_duration_ > 5 * dt && t_cur - traj_duration_ <= 6 * dt ) yaw_yawdot.first = PI;
+    // else if( t_cur - traj_duration_ > 6 * dt && t_cur - traj_duration_ <= 7 * dt ) yaw_yawdot.first = - ( 5 * PI ) / 6.0;
+    // else if( t_cur - traj_duration_ > 7 * dt && t_cur - traj_duration_ <= 8 * dt ) yaw_yawdot.first = - ( 2 * PI ) / 3.0;
+    // else if( t_cur - traj_duration_ > 8 * dt && t_cur - traj_duration_ <= 9 * dt ) yaw_yawdot.first = - PI / 2.0;
+    // else if( t_cur - traj_duration_ > 9 * dt && t_cur - traj_duration_ <= 10 * dt ) yaw_yawdot.first = - PI / 3.0;
+    // else if( t_cur - traj_duration_ > 10 * dt && t_cur - traj_duration_ <= 11 * dt ) yaw_yawdot.first = - PI / 6.0;
+    // else if( t_cur - traj_duration_ > 11 * dt && t_cur - traj_duration_ <= 12 * dt ) yaw_yawdot.first = 0.0;
+    // yaw_yawdot.second = 0;
 
     pos_f = pos;
     return;
@@ -235,6 +253,10 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "traj_server");
   // ros::NodeHandle node;
   ros::NodeHandle nh("~");
+
+  IF_ROT = true;
+
+  // nh.param("IF_ROT", IF_ROT, true);
 
   ros::Subscriber bspline_sub = nh.subscribe("planning/bspline", 10, bsplineCallback);
 
