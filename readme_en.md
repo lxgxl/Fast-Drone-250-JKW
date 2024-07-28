@@ -175,6 +175,8 @@ Operating aerial robots is risky! Please strictly abide by the safety regulation
   * Check `/camera/infra1/image_rect_raw`,`/camera/infra2/image_rect_raw`,`/camera/depth/image_rect_raw` is normal
 * VINS parameter settings
   * Check `realflight_modules/VINS_Fusion/config/`
+
+  * Copy all files with the `.template` suffix into a file without the suffix
   
   * Drive realsense，`rostopic echo /camera/infra1/camera_info`，fill in `left.yaml` and `right.yaml` with fx, fy, cx, cy in the K matrix
   
