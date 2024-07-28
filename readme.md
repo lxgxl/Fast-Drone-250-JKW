@@ -191,6 +191,8 @@
   * 查看`/camera/infra1/image_rect_raw`,`/camera/infra2/image_rect_raw`,`/camera/depth/image_rect_raw`话题正常
 * VINS参数设置
   * 进入`realflight_modules/VINS_Fusion/config/`
+
+  * 将所有`.template`后缀的文件copy成一个不带该后缀的文件
   
   * 驱动realsense后，`rostopic echo /camera/infra1/camera_info`，把其中的K矩阵中的fx,fy,cx,cy填入`left.yaml`和`right.yaml`
   

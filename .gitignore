@@ -3,3 +3,6 @@ devel/
 logs/
 .catkin_workspace
 src/CMakeLists.txt
+src/realflight_modules/VINS-Fusion/config/fast_drone_250.yaml
+src/realflight_modules/VINS-Fusion/config/left.yaml
+src/realflight_modules/VINS-Fusion/config/right.yaml
