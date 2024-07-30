@@ -176,7 +176,7 @@ void PX4CtrlFSM::process()
 			set_hov_with_rc();
 			des = get_hover_des();
 			if ((rc_data.enter_command_mode) ||
-				(takeoff_land.delay_trigger.first && now_time > takeoff_land.delay_trigger.second))
+				(0 && takeoff_land.delay_trigger.first && now_time > takeoff_land.delay_trigger.second))  // 禁用自动delay trigger
 			{
 				takeoff_land.delay_trigger.first = false;
 				publish_trigger(odom_data.msg);

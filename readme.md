@@ -190,7 +190,7 @@
   * 进入远程桌面，`rqt_image_view`
   * 查看`/camera/infra1/image_rect_raw`,`/camera/infra2/image_rect_raw`,`/camera/depth/image_rect_raw`话题正常
 * VINS参数设置
-  * 进入`realflight_modules/VINS_Fusion/config/`
+  * 进入`realflight_modules/VINS-Fusion/config/`
 
   * 将所有`.template`后缀的文件copy成一个不带该后缀的文件
   
